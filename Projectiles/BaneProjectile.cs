@@ -29,7 +29,7 @@ public class BaneProjectile : ModProjectile
         Projectile.aiStyle = 1;
         Projectile.friendly = true;
         Projectile.hostile = false;
-        Projectile.penetrate = -1;
+        Projectile.penetrate = 3;
         Projectile.timeLeft = 600;
         Projectile.light = 1.25f;
         Projectile.ignoreWater = true;
@@ -49,35 +49,6 @@ public class BaneProjectile : ModProjectile
         Main.dust[dust2].velocity *= 0.3f;
         Main.dust[dust2].scale = Main.rand.Next(80, 115) * 0.013f;
         Main.dust[dust2].noGravity = true;
-
-        /*
-        for (var i = 0; i < 20; i++)
-        {
-            var target = Main.npc[i];
-            if (!target.friendly)
-            {
-                //Get the shoot trajectory from the projectile and target
-                var shootToX = target.position.X + target.width * 0.5f - Projectile.Center.X;
-                var shootToY = target.position.Y - Projectile.Center.Y;
-                var distance = (float)Math.Sqrt(shootToX * shootToX + shootToY * shootToY);
-
-                //If the distance between the live targeted npc and the projectile is less than 480 pixels
-                if (distance < 480f && !target.friendly && target.active)
-                {
-                    //Divide the factor, 3f, which is the desired velocity
-                    distance = 3f / distance;
-
-                    //Multiply the distance by a multiplier if you wish the projectile to have go faster
-                    shootToX *= distance * 5;
-                    shootToY *= distance * 5;
-
-                    //Set the velocities to the shoot values
-                    Projectile.velocity.X = shootToX;
-                    Projectile.velocity.Y = shootToY;
-                }
-            }
-        }
-        */
 
         var homingCooldown = HomingCooldown;
         HomingCooldown = homingCooldown + 1f;
@@ -118,13 +89,11 @@ public class BaneProjectile : ModProjectile
             if (j.CanBeChasedBy(Projectile))
             {
                 var distance = Projectile.Distance(j.Center);
-                if (distance <= 1000f && (selectedTarget == -1 ||
+                if (distance <= 200f && (selectedTarget == -1 ||
                                           Projectile.Distance(Main.npc[selectedTarget].Center) > distance))
                     selectedTarget = i;
             }
         }
-
-        if (selectedTarget == -1) selectedTarget = NPC.FindFirstNPC(ModContent.NPCType<Cleric>());
         return selectedTarget;
     }
 }
