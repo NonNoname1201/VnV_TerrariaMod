@@ -50,7 +50,7 @@ public class Cleric : ModNPC
         NPC.Happiness.SetNPCAffection(22, AffectionLevel.Hate);
     }
 
-    public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+    public override bool CanTownNPCSpawn(int numTownNpCs, int money)
     {
         if (NPC.downedSlimeKing)
             for (var i = 0; i < 255; i++)
@@ -117,12 +117,12 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ItemID.HolyArrow, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 1);
-            ;
+            
             nextSlot++;
 
             shop.item[nextSlot].SetDefaults(ItemID.HolyWater, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 1, 50);
-            ;
+            
             nextSlot++;
         }
 
@@ -146,12 +146,12 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ItemID.GreaterHealingPotion, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 29, 50);
-            ;
+            
             nextSlot++;
 
             shop.item[nextSlot].SetDefaults(ItemID.LifeforcePotion, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 9, 50);
-            ;
+            
             nextSlot++;
         }
 
@@ -159,7 +159,7 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ItemID.GreaterHealingPotion, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 1, 49, 50);
-            ;
+            
             nextSlot++;
         }
 
@@ -167,7 +167,7 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<BaneOfTioska>(), false);
             shop.item[nextSlot].value = Item.buyPrice(1, 0, 0, 50);
-            ;
+            
             nextSlot++;
         }
     }
@@ -221,7 +221,6 @@ public class Cleric : ModNPC
     public override void OnKill()
     {
         Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ItemID.CrossNecklace);
-        //summon holy water
         Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, new Vector2(0, 10), ProjectileID.PurificationPowder,
             0, 0, Main.myPlayer);
     }
