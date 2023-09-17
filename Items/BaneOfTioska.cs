@@ -36,7 +36,7 @@ public class BaneOfTioska : ModItem
         Item.autoReuse = true;
         Item.useTurn = true;
 
-        Item.value = Item.buyPrice(0, 20, 0, 0);
+        Item.value = Item.buyPrice(0, 20);
         Item.rare = ItemRarityID.Red;
     }
 

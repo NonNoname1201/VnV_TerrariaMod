@@ -117,12 +117,12 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ItemID.HolyArrow, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 1);
-            
+
             nextSlot++;
 
             shop.item[nextSlot].SetDefaults(ItemID.HolyWater, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 1, 50);
-            
+
             nextSlot++;
         }
 
@@ -146,12 +146,12 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ItemID.GreaterHealingPotion, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 29, 50);
-            
+
             nextSlot++;
 
             shop.item[nextSlot].SetDefaults(ItemID.LifeforcePotion, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 0, 9, 50);
-            
+
             nextSlot++;
         }
 
@@ -159,7 +159,7 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ItemID.GreaterHealingPotion, false);
             shop.item[nextSlot].value = Item.buyPrice(0, 1, 49, 50);
-            
+
             nextSlot++;
         }
 
@@ -167,7 +167,7 @@ public class Cleric : ModNPC
         {
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<BaneOfTioska>(), false);
             shop.item[nextSlot].value = Item.buyPrice(1, 0, 0, 50);
-            
+
             nextSlot++;
         }
     }
@@ -175,8 +175,11 @@ public class Cleric : ModNPC
     public override string GetChat()
     {
         var dialogue = new List<string>();
-        dialogue.Add("Beware, the end is nigh!" + (!NPC.downedMoonlord ? " Impending doom is approaching!" : " Oh, you've already beaten the squid guy?"));
-        dialogue.Add("I remember those old times when we stood in the middle of nowhere, shoutin': \"Deus Vult!\"\nWhat does it mean anyway?");
+        dialogue.Add("Beware, the end is nigh!" + (!NPC.downedMoonlord
+            ? " Impending doom is approaching!"
+            : " Oh, you've already beaten the squid guy?"));
+        dialogue.Add(
+            "I remember those old times when we stood in the middle of nowhere, shoutin': \"Deus Vult!\"\nWhat does it mean anyway?");
         dialogue.Add("How could mushrooms heal you? They are poisonous!");
         dialogue.Add("In the name of the Father, the Son and the Holy Spirit. Amen.");
         dialogue.Add("You wish you could dress like me? Ha! You're not worthy.");
@@ -188,8 +191,10 @@ public class Cleric : ModNPC
 
         if (Main.LocalPlayer.ZoneGraveyard) dialogue.Add("I hope all these graves lying around don't belong to you.");
         var princess = NPC.FindFirstNPC(663);
-        if (princess != -1) dialogue.Add(
-                            "Can you please ask her highness " + Main.npc[princess].GivenName + " to stop calling me by name? It's creepy.");
+        if (princess != -1)
+            dialogue.Add(
+                "Can you please ask her highness " + Main.npc[princess].GivenName +
+                " to stop calling me by name? It's creepy.");
 
         return Main.rand.Next(dialogue);
     }
